@@ -1,0 +1,70 @@
+sql:
+CREATE:
+CREATE TABLE celebs (
+   id INTEGER PRIMARY KEY, 
+   name TEXT UNIQUE,
+   date_of_birth TEXT NOT NULL,
+   date_of_death TEXT DEFAULT 'Not Applicable'
+);
+INSERT:
+INSERT INTO celebs (id, name, age) 
+VALUES (1, 'Justin Bieber', 22); 
+SELECT name FROM celebs;
+ALTER:
+ALTER TABLE celebs 
+ADD COLUMN twitter_handle TEXT;
+UPDATE:
+UPDATE celebs 
+SET twitter_handle = '@taylorswift13' 
+WHERE id = 4; 
+DELETE:
+DELETE FROM celebs 
+WHERE twitter_handle IS NULL;
+lIKE:
+SELECT * 
+FROM movies
+WHERE name LIKE 'Se_en';
+SELECT * 
+FROM movies
+WHERE name LIKE 'A%';
+CASE:
+SELECT name,
+ CASE
+  WHEN imdb_rating > 8 THEN 'Fantastic'
+  WHEN imdb_rating > 6 THEN 'Poorly Received'
+  ELSE 'Avoid at All Costs'
+ END
+FROM movies;
+LIMIT:
+SELECT *
+FROM movies
+ORDER BY imdb_rating DESC
+LIMIT 3;
+SELECT is the clause we use every time we want to query information from a database.
+AS renames a column or table.
+DISTINCT return unique values.
+WHERE is a popular command that lets you filter the results of the query based on conditions that you specify.
+LIKE and BETWEEN are special operators.
+AND and OR combines multiple conditions.
+ORDER BY sorts the result.
+LIMIT specifies the maximum number of rows that the query will return.
+CASE creates different outputs.
+ROUND:
+SELECT ROUND(AVG(price),2)
+GROUP BY:
+SELECT category,SUM(downloads) 
+FROM fake_apps
+GROUP BY category;
+SELECT category, 
+   price,
+   AVG(downloads)
+FROM fake_apps
+GROUP BY 1, 2;
+TIME:
+ELECT strftime('%H',timestamp) AS 'HOUR',
+  ROUND(AVG(score)) AS 'AVG_SCORE',
+  COUNT(*) AS 'NO_OF_STORIES'
+FROM hacker_news
+WHERE timestamp IS NOT NULL
+GROUP BY 1
+ORDER BY 1;FROM fake_apps;
