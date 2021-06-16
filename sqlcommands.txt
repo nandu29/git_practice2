@@ -68,3 +68,37 @@ FROM hacker_news
 WHERE timestamp IS NOT NULL
 GROUP BY 1
 ORDER BY 1;FROM fake_apps;
+
+JOINS:
+JOIN will combine rows from different tables if the join condition is true.
+
+LEFT JOIN will return every row in the left table, and if the join condition is not met, NULL values are used to fill in the columns from the right table.
+
+Primary key is a column that serves a unique identifier for the rows in the table.
+
+Foreign key is a column that contains the primary key to another table.
+
+CROSS JOIN lets us combine all rows of one table with all rows of another table.
+
+UNION stacks one dataset on top of another.
+
+WITH allows us to define one or more temporary tables that can be used in the final query.
+
+UNION:
+SELECT *
+FROM newspaper
+UNION
+SELECT *
+FROM online;
+
+WITH:
+WITH previous_query AS (SELECT customer_id,
+COUNT(subscription_id) AS
+'subscriptions'
+FROM orders
+GROUP BY customer_id)
+SELECT customers.customer_name,
+previous_query.subscriptions
+FROM customers
+JOIN previous_query
+ON previous_query.customer_id=customers.customer_id;
